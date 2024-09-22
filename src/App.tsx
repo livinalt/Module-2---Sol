@@ -73,6 +73,8 @@ const createSender = async () => {
   toast.info(`Sender account created: ${newSenderKeypair.publicKey.toString()}`);
   toast.info('Airdropping 2 SOL to Sender Wallet');
 
+  // console.log(newSenderKeypair);
+
   setSenderKeypair(newSenderKeypair);
 
   const airdropSignature = await connection.requestAirdrop(
@@ -144,7 +146,7 @@ const transferSol = async () => {
     const senderBalance = await connection.getBalance(senderKeypair.publicKey);
     const amountToSend = 1 * LAMPORTS_PER_SOL;
 
-    if (senderBalance < amountToSend + 0.001 * LAMPORTS_PER_SOL) { // Ensure enough for fees
+    if (senderBalance < amountToSend + 0.001 * LAMPORTS_PER_SOL) { 
       toast.error("Sender has insufficient SOL for the transaction.");
       return;
     }
